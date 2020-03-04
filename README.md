@@ -1,27 +1,33 @@
 # NgLifecycle
+## 说明
+- 测试Angular中各类元数据的生命周期。
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+## 运行
+- 启动：`npm start`；
+- 打包: `npm run build`
 
-## Development server
+## 结论
+### NgModule模块
+- 只会初始化一次。不会随着路由的切换而销毁或者重新初始化；
+- 被引入的NgModule，会随着所在的NgModule一起初始化，会在所在NgModule初始化之前被初始化。同样也只会被初始化一次。
+- 同一个NgModule，在不同NgModule中被引入，实例是不同的。
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Component组件
+- ngOnChanges,ngOnInit,ngDoCheck,ngAfterContentInit,ngAfterContentDoChecked,ngAfterViewInit,ngAfterViewDoChecked,ngOnDestroy.
+- 详情见官方教程
 
-## Code scaffolding
+### Directive指令
+- ngOnChanges,ngOnInit,ngDoCheck,ngAfterContentInit,ngAfterContentDoChecked,ngAfterViewInit,ngAfterViewDoChecked,ngOnDestroy.
+- 详情见官方教程
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Service服务
+- 不管是通过`@Injectable({providedIn: 'root'})`还是通过`NgModule.providers`注册服务，都只会在第一次用到的时候才会初始化；
+- 懒加载模块中，通过`NgModule.providers`注册的服务，并不会随着路由切换至其它模块导致服务实例销毁，且再随着路由切换至该模块而重新初始化。在整个项目周期中只有当使用到时，才会初始化一次。虽然它的作用域仅限于当前模块；这与NgModule的初始化保持一致；
+- 通过`Component.providers`注册的服务，是随着组件的创建和初始化、随着组件的销毁而销毁。这与该服务实例的作用域仅限于当前组件以及子组件的效果相吻合；
+- 引入的模块中，通过`NgModule.providers`注册的服务,生命周期跟所在的模块的生命周期一样，不同模块之间的服务实例是不同的。
 
-## Build
+### Pipe管道
+- 每用一次管道，都会初始化一个新的管道实例。
+- 所在组件销毁时，也会被跟着销毁，虽然捕获不到它销毁的时机，因为不用关心什么时候被销毁。
+- 管道实例是不可共用的，跟组件、指令类似。
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
