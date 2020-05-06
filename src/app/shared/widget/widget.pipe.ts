@@ -18,4 +18,36 @@ export class WidgetPipe implements PipeTransform {
     return value;
   }
 
+  ngOnChanges() {
+    console.log('ngOnChanges in WidgetPipe');
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit in WidgetPipe');
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck in WidgetPipe');
+  }
+
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit in WidgetPipe');
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked in WidgetPipe');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit in WidgetPipe');
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked in WidgetPipe');
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy in WidgetPipe');
+  }
+
 }
