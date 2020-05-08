@@ -1,3 +1,4 @@
+import { LogService } from 'src/app/log.service';
 import * as uuidv4 from 'uuid/v4';
 
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,7 @@ import { Widget1Component } from './widget1.component';
   declarations: [Widget1Component]
 })
 export class Widget1Module {
-  constructor() {
-    console.log('这是Widget1Module的初始化' + uuidv4());
+  constructor(private log: LogService) {
+    this.log.publishLogMsg('这是Widget1Module的初始化' + uuidv4());
   }
 }

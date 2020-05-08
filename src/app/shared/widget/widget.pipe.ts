@@ -1,3 +1,4 @@
+import { LogService } from 'src/app/log.service';
 import * as uuidv4 from 'uuid/v4';
 
 import {
@@ -5,13 +6,14 @@ import {
     PipeTransform
 } from '@angular/core';
 
-@Pipe({
-  name: 'appWidget'
-})
-export class WidgetPipe implements PipeTransform {
+@Pipe( {
+    name: 'appWidget'
+  }
 
-  constructor() {
-    console.log('这是WidgetPipe的初始化' + uuidv4());
+) export class WidgetPipe implements PipeTransform {
+
+  constructor(private log:LogService) {
+    this.log.publishLogMsg('这是WidgetPipe的初始化'+ uuidv4());
   }
 
   transform(value: any, args?: any): any {
@@ -19,35 +21,35 @@ export class WidgetPipe implements PipeTransform {
   }
 
   ngOnChanges() {
-    console.log('ngOnChanges in WidgetPipe');
+    this.log.publishLogMsg('ngOnChanges in WidgetPipe');
   }
 
   ngOnInit() {
-    console.log('ngOnInit in WidgetPipe');
+    this.log.publishLogMsg('ngOnInit in WidgetPipe');
   }
 
   ngDoCheck() {
-    console.log('ngDoCheck in WidgetPipe');
+    this.log.publishLogMsg('ngDoCheck in WidgetPipe');
   }
 
   ngAfterContentInit(): void {
-    console.log('ngAfterContentInit in WidgetPipe');
+    this.log.publishLogMsg('ngAfterContentInit in WidgetPipe');
   }
 
   ngAfterContentChecked() {
-    console.log('ngAfterContentChecked in WidgetPipe');
+    this.log.publishLogMsg('ngAfterContentChecked in WidgetPipe');
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit in WidgetPipe');
+    this.log.publishLogMsg('ngAfterViewInit in WidgetPipe');
   }
 
   ngAfterViewChecked() {
-    console.log('ngAfterViewChecked in WidgetPipe');
+    this.log.publishLogMsg('ngAfterViewChecked in WidgetPipe');
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy in WidgetPipe');
+    this.log.publishLogMsg('ngOnDestroy in WidgetPipe');
   }
 
 }

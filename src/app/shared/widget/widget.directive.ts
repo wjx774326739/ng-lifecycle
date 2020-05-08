@@ -1,3 +1,4 @@
+import { LogService } from 'src/app/log.service';
 import * as uuidv4 from 'uuid/v4';
 
 import { Directive } from '@angular/core';
@@ -7,40 +8,40 @@ import { Directive } from '@angular/core';
 })
 export class WidgetDirective {
 
-  constructor() {
-    console.log('这是WidgetDirective的初始化' + uuidv4());
+  constructor(private log: LogService) {
+    this.log.publishLogMsg('这是WidgetDirective的初始化' + uuidv4());
   }
 
   ngOnChanges() {
-    console.log('ngOnChanges in WidgetDirective');
+    this.log.publishLogMsg('ngOnChanges in WidgetDirective');
   }
 
   ngOnInit() {
-    console.log('ngOnInit in WidgetDirective');
+    this.log.publishLogMsg('ngOnInit in WidgetDirective');
   }
 
   ngDoCheck() {
-    console.log('ngDoCheck in WidgetDirective');
+    this.log.publishLogMsg('ngDoCheck in WidgetDirective');
   }
 
   ngAfterContentInit(): void {
-    console.log('ngAfterContentInit in WidgetDirective');
+    this.log.publishLogMsg('ngAfterContentInit in WidgetDirective');
   }
 
   ngAfterContentChecked() {
-    console.log('ngAfterContentChecked in WidgetDirective');
+    this.log.publishLogMsg('ngAfterContentChecked in WidgetDirective');
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit in WidgetDirective');
+    this.log.publishLogMsg('ngAfterViewInit in WidgetDirective');
   }
 
   ngAfterViewChecked() {
-    console.log('ngAfterViewChecked in WidgetDirective');
+    this.log.publishLogMsg('ngAfterViewChecked in WidgetDirective');
   }
 
   ngOnDestroy() {
-    console.log('ngOnDestroy in WidgetDirective');
+    this.log.publishLogMsg('ngOnDestroy in WidgetDirective');
   }
 
 }
