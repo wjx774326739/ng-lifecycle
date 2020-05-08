@@ -1,3 +1,4 @@
+import { LogService } from 'src/app/log.service';
 import * as uuidv4 from 'uuid/v4';
 
 import { CommonModule } from '@angular/common';
@@ -17,7 +18,7 @@ import { Widget2Module } from '../widget2/widget2.module';
   ]
 })
 export class SharedModule {
-  constructor() {
-    console.log('这是SharedModule的初始化' + uuidv4());
+  constructor(private log: LogService) {
+    this.log.publishLogMsg('这是SharedModule的初始化' + uuidv4());
   }
 }
